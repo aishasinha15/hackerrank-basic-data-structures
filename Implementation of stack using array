@@ -1,0 +1,80 @@
+
+#include <iostream>
+using namespace std;
+struct stack{
+    int size;
+    int * pointer;
+    int top=-1;
+};
+void push(stack *st,int data){
+    
+    if(st->top==st->size-1)
+      cout<<"Stack overflow"<<endl;
+    else{
+       st->top++;
+       st->pointer[st->top]=data;
+       
+    }
+}
+void pop(stack *st){
+    if(st->top==-1)
+    cout<<"stack underflow"<<endl;
+    else{
+        int data=st->pointer[st->top-1];
+        st->top--;
+        st->pointer[st->top]=data;
+    }
+}
+int peek(stack *st,int pos){
+    int result=-1;
+    int index=st->top-pos+1;
+    if(index<0)
+    cout<<"Invalid";
+    else{
+        result=st->pointer[st->top-pos+1];
+    }
+    return result;
+}
+int stacktop(stack *st){
+    if(st->top==-1)
+    return -1;
+    return st->pointer[st->top];
+}
+int IsEmpty(stack *st){
+    if(st->top==-1)
+    return 1;
+    else
+    return 0;
+}
+int IsFull(stack *st){
+    if(st->top==st->size-1)
+    return 1;
+    else
+    return 0;
+}
+int main() {
+    struct stack st;
+    cout<<"Enter size of stack"<<endl;
+    scanf("%d",&st.size);
+    st.pointer=new int [st.size];
+    push(&st,0);
+    push(&st,12);
+    push(&st,24);
+    push(&st,100);
+   // cout<<stacktop(&st);
+    cout<<IsEmpty(&st)<<endl;
+    cout<<IsFull(&st)<<endl;
+    //cout<<st.top;
+    //cout<<peek(&st,1)<<endl;
+    //cout<<peek(&st,2)<<endl;
+    //cout<<peek(&st,3)<<endl;
+    //cout<<peek(&st,4)<<endl;
+     //cout<<st.pointer[st.top]<<endl;
+    //pop(&st);
+    //st.top=-1;
+    //st.top++;
+    //st.pointer[st.top]=3;
+   //cout<<st.pointer[st.top]<<endl;
+  //cout<<st.pointer[st.top]<<endl;
+    return 0;
+}
